@@ -7,7 +7,7 @@ public class PersonBuilder {
 
     private String firstName;
     private String lastName;
-    private int age;
+    private int age = -1;
     private String address;
 
     public PersonBuilder setFirstName(String firstName) {
@@ -21,7 +21,7 @@ public class PersonBuilder {
     }
 
     public PersonBuilder setAge(int age) {
-        if (age <= 0 || age > 150) {
+        if (age < 0 || age > 150) {
             throw new IllegalArgumentException("Incorrect age");
         }
         this.age = age;
@@ -36,6 +36,9 @@ public class PersonBuilder {
     public Person build() {
         if (firstName == null || lastName == null) {
             throw new IllegalStateException("Please enter your first name and last name");
+        }
+        if (age == -1) {
+            throw new IllegalStateException("Please enter your age");
         }
         return new Person(firstName, lastName, age, address);
     }

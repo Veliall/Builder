@@ -8,7 +8,7 @@ import java.util.Objects;
 public class Person {
     protected final String firstName;
     protected final String lastName;
-    protected int age;
+    protected int age = -1;
     protected String address;
 
     public Person(String firstName, String lastName, int age, String address) {
@@ -30,7 +30,7 @@ public class Person {
     }
 
     public boolean hasAge() {
-        return age != 0;
+        return age != -1;
     }
 
     public boolean hasAddress() {
@@ -44,7 +44,8 @@ public class Person {
     public PersonBuilder newChildBuilder() {
         return new PersonBuilder()
                 .setLastName(this.getLastName())
-                .setAddress(this.getAddress());
+                .setAddress(this.getAddress())
+                .setAge(0);
     }
 
     public String getFirstName() {

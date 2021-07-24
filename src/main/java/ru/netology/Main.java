@@ -32,5 +32,17 @@ public class Main {
             e.printStackTrace();
         }
 
+        try {
+            // Не указан возраст
+            new PersonBuilder().setFirstName("1").setLastName("2").build();
+        } catch (IllegalStateException e) {
+            e.printStackTrace();
+        }
+
+        //Проверяем методы hasAge, hasAddress.
+        // Билдер не даст создать без возраста в данном исполнении, поэтому создаём напрямую.
+        Person person = new Person("Name", "Surname");
+        System.out.println(person.hasAge() + ", " + person.hasAddress());
+
     }
 }
